@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  resources :todo_lists do
+    resources :todo_items, only: [:create, :destroy]
+   end 
+  root to: "todo_list#index"
+
+  get '/todo_lists(.:format)', to: 'todo_lists#index' 
+  get '/todo_lists/:todo_list_id/todo_items(.:format)', to: 'todo_items#index'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
